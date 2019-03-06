@@ -67,4 +67,4 @@ model.add(Activation("softmax"))
 
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 model.fit(X, y, epochs=10, batch_size=32)
-model.save('color-model-1.model')
+model.save('models/modelColor/color-model-1.model')
