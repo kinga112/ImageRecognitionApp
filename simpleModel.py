@@ -6,7 +6,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Flatten
 
 dataDir = "datasets"
-categories = ["baseball", "basketball", "volleyball", "soccer ball", "hockey puck"]
+categories = ["baseball", "basketball", "volleyball", "soccer ball", "hockey puck", "football"]
 
 imgSize = 128
 
