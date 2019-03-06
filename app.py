@@ -1,18 +1,44 @@
 import cv2
 import tensorflow as tf
 
-categories = ["baseball", "basketball"]
+categories = ["baseball", "basketball", "volleyball", "soccer ball", "hockey puck"]
 
 def prepare(filepath):
-    imgSize = 64
-    imgArray = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
+    imgSize = 128
+    #imgArray = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE) #simpleModel.py
+    imgArray = cv2.imread(filepath) #modelColor.py
     newArray = cv2.resize(imgArray, (imgSize, imgSize))
-    return newArray.reshape(-1, imgSize, imgSize, 1)
+    #return newArray.reshape(-1, imgSize, imgSize, 1) #simpleModel.py
+    return  newArray.reshape(-1, imgSize, imgSize, 3) #modelColor.py
 
-model = tf.keras.models.load_model("baseball-basketball-1.model")
+model = tf.keras.models.load_model("models/modelColor/model-color-1.model")
 
-prediction = model.predict([prepare("baseballimage.jpg")])
-print(categories[int(prediction[0][0])])
+prediction = model.predict([prepare("predictionImages/baseballimage.jpg")])
 
-prediction = model.predict([prepare("basketballimage.jpg")])
-print(categories[int(prediction[0][0])])
+for i in range(5):
+    if prediction[0][i] > 0.5:
+        print(categories[i])
+
+prediction = model.predict([prepare("predictionImages/hockeypuckimage.jpg")])
+
+for i in range(5):
+    if prediction[0][i] > 0.5:
+        print(categories[i])
+
+prediction = model.predict([prepare("predictionImages/soccerballimage2.jpg")])
+
+for i in range(5):
+    if prediction[0][i] > 0.5:
+        print(categories[i])
+
+prediction = model.predict([prepare("predictionImages/basketballimage.jpg")])
+
+for i in range(5):
+    if prediction[0][i] > 0.5:
+        print(categories[i])
+
+prediction = model.predict([prepare("predictionImages/volleyballimage.jpg")])
+
+for i in range(5):
+    if prediction[0][i] > 0.5:
+        print(categories[i])
