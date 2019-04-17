@@ -1,0 +1,51 @@
+<Button>:
+    font_size: 40
+
+<Widgets>:
+    Button:
+        id: takePhotoButton
+        size: 480, 50
+        pos: 0,50
+        text: "Take Photo"
+        color: 0,1,0,1
+        on_press: camera.play = False
+        on_press: camera.export_to_png("image1.png")
+        on_press: back.disabled = False
+        on_press: nextButton.disabled = False
+        on_press: takePhotoButton.disabled = True
+
+    Button:
+        id: nextButton
+        size: 240, 50
+        pos: 240, 0
+        text: "Next"
+        color: 1,0,0,1
+        on_press: camera.opacity = 0
+        on_press: app.imageRec()
+        disabled: True
+        on_press: nextButton.disabled = True
+        on_press: label.opacity = 0
+
+    Button:
+        id: back
+        size: 240, 50
+        pos: 0,0
+        text: "Back"
+        disabled: True
+        color: 1,0,0,1
+        on_press: back.disabled = True
+        on_press: takePhotoButton.disabled = False
+        on_press: camera.play = True
+
+    Camera:
+        id: camera
+        resolution: (470, 590)
+        size: 470, 590
+        allow_stretch: True
+        pos: 0, 50
+
+    Label:
+        id: label
+        text: "This is a label"
+        pos: 200, 300
+        opacity: 0
