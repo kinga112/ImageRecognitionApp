@@ -10,12 +10,6 @@ global basketball
 basketball = 0
 
 def imageRecog():
-    global hockeyPuck
-    hockeyPuck = 0
-    global baseball
-    baseball = 0
-    global basketball
-    basketball = 0
     #categories = ["baseball", "basketball", "volleyball", "soccer ball", "hockey puck", "football", "tennis ball", "golf ball"]
     categories = ["baseball", "basketball", "hockey puck"]
     def prepare(filepath):
@@ -34,12 +28,9 @@ def imageRecog():
         if prediction[0][i] > 0.5:
             print(categories[i])
             if categories[i] == "hockey puck":
-                global hockeyPuck
                 hockeyPuck = 1
             if categories[i] == "baseball":
-                global baseball
                 baseball = 1
             if categories[i] == "basketball":
-                global basketball
                 basketball = 1
     os.remove('image1.png')
