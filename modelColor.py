@@ -6,7 +6,8 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D
 
 dataDir = "datasets"
-categories = ["baseball", "basketball", "volleyball", "soccer ball", "hockey puck", "football"]
+#categories = ["baseball", "basketball", "volleyball", "soccer ball", "hockey puck", "football", "tennis ball", "golf ball"]
+categories = ["baseball", "basketball", "hockey puck"]
 
 imgSize = 128
 
@@ -62,9 +63,9 @@ model.add(Dense(128))
 model.add(Activation("relu"))
 
 #output layer
-model.add(Dense(6))
+model.add(Dense(8))
 model.add(Activation("softmax"))
 
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-model.fit(X, y, epochs=15, batch_size=32)
-model.save('models/modelColor/color-model-3.model')
+model.fit(X, y, epochs=10, batch_size=32, shuffle=True)
+model.save('models/modelColor/color-model-15.model')

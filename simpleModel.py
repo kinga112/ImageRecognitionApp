@@ -6,7 +6,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Flatten
 
 dataDir = "datasets"
-categories = ["baseball", "basketball", "volleyball", "soccer ball", "hockey puck", "football"]
+categories = ["baseball", "basketball", "hockey puck"]
 
 imgSize = 128
 
@@ -51,8 +51,8 @@ model.add(Dense(128, activation='relu'))
 model.add(Dense(128, activation='relu'))
 
 #output layer
-model.add(Dense(5, activation='softmax'))
+model.add(Dense(3, activation='softmax'))
 
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-model.fit(X, y, epochs=50, batch_size=32)
-model.save('models/simpleModel/simple-model-2.model')
+model.fit(X, y, epochs=100, batch_size=32, shuffle=True)
+model.save('models/simpleModel/simple-model-9.model')
